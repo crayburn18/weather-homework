@@ -1,6 +1,10 @@
 $(document).ready(function(){
 
-    var cityName = "Phoenix"
+  $("#search-city").on("click", function(event){
+
+    event.preventDefault();
+
+    var cityName = $("#search-city").val();
    
     var APIKey = "b15de476a69f8fe1bfef4d5af2fb20a4";
 
@@ -17,6 +21,8 @@ $(document).ready(function(){
           console.log(queryURL);
   
           console.log(response);
+
+         // $("#report").text(JSON.stringify(response));
          
           $(".city").html("<h1>" + response.city.name + " date from moment.js</h1>");
          
@@ -26,10 +32,10 @@ $(document).ready(function(){
           
           var tempF = (response.list[0].main.temp - 273.15) * 1.80 + 32;
   
-          $(".tempF").text("Temperature (F) " + tempF.toFixed(2));
+          $(".tempF").text("Temperature: " + tempF.toFixed(2) + " F");
   
-          console.log("Wind Speed: " + response.wind.speed);
-          console.log("Humidity: " + response.main.humidity);
+          console.log("Wind Speed: " + response.list[0].wind.speed);
+          console.log("Humidity: " + response.list[0].main.humidity);
           console.log("Temperature (F): " + tempF);
   
          
@@ -50,7 +56,7 @@ $(document).ready(function(){
              
             });
 
-
+})
 
 
 
